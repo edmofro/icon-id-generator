@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import QRCode from "react-qr-code";
 import styled from "styled-components";
 import { ColoredIcon } from "./ColoredIcon";
@@ -20,14 +21,9 @@ const IconsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-const IconLabelsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-
-  p {
-    padding: 5px;
-    font-size: 20px;
-  }
+const IconLabelsContainer = styled.p`
+  padding: 5px;
+  font-size: 20px;
 `;
 
 const OrganisationLabel = styled.p`
@@ -43,9 +39,9 @@ const StyledQRCode = styled(QRCode)`
 
 const getIconLabel = (color, icon) => `${color}-${icon}`;
 
-export function IdCard({ id, uuid, icons }) {
+export const IdCard = forwardRef(function IdCardInternal({ id, icons }, ref) {
   return (
-    <Container>
+    <Container ref={ref}>
       <IconsContainer>
         {icons.map(([color, icon]) => (
           <ColoredIcon
@@ -56,14 +52,11 @@ export function IdCard({ id, uuid, icons }) {
         ))}
       </IconsContainer>
       <IconLabelsContainer>
-        {icons.map(([color, icon]) => {
-          const label = getIconLabel(color, icon);
-          return <p key={label}>{label}</p>;
-        })}
+        {icons.map(([color, icon]) => getIconLabel(color, icon)).join(" ")}
       </IconLabelsContainer>
       <OrganisationLabel>{process.env.organization}</OrganisationLabel>
       <IssuerLabel>Issued by: {process.env.issuer}</IssuerLabel>
       <StyledQRCode value={id} size={140} />
     </Container>
   );
-}
+});

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 const colorToFilter = {
   black: "none",
@@ -19,7 +18,7 @@ const colorToFilter = {
 };
 
 // "red", "orange", "yellow", "green", "blue", "purple",
-const ColoredImage = styled(Image)`
+const ColoredImage = styled.img`
   filter: ${({ color }) => colorToFilter[color]};
 `;
 

@@ -30,7 +30,7 @@ const IdCardContainer = styled.div`
   margin: 50px 105px 50px 105px;
 `;
 
-export function PreviewPane({ ids }) {
+export function PreviewPane({ ids, idCardRef }) {
   if (!ids) {
     return (
       <PlaceholderContainer>
@@ -48,7 +48,13 @@ export function PreviewPane({ ids }) {
           <p>
             ID {index + 1}: {id}
           </p>
-          <IdCard id={id} icons={icons} />
+          <IdCard
+            id={id}
+            icons={icons}
+            ref={(ref) => {
+              idCardRef.current[index] = ref;
+            }}
+          />
         </IdCardContainer>
       ))}
     </Container>
