@@ -2,9 +2,9 @@ import { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import { saveAs } from "file-saver";
 import { toBlob } from "dom-to-image";
-import { ControlPane } from "./components/ControlPane";
-import { PreviewPane } from "./components/PreviewPane";
-import { fetchGeneratedIds } from "./utilities/backend";
+import { ControlPane } from "../components/ControlPane";
+import { PreviewPane } from "../components/PreviewPane";
+import { fetchGeneratedIds } from "../utilities/backend";
 
 const Container = styled.div`
   display: flex;
