@@ -1,5 +1,3 @@
-import { generateMongoId } from "./utilities/generateMongoId";
-
 const colors = ["black", "red", "orange", "yellow", "green", "blue", "purple"];
 
 const pickRandomly = (array) => array[Math.floor(Math.random() * array.length)];
@@ -15,12 +13,10 @@ const generateId = () => {
   const id = `${issuer}_${icons
     .map(([color, icon]) => `${color}_${icon}`)
     .join("_")}`;
-  const uuid = generateMongoId();
   return {
     issuer,
     icons,
     id,
-    uuid,
   };
 };
 
